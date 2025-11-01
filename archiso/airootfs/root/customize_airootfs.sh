@@ -2,6 +2,9 @@
 
 set -e
 
+# Enable snapd service
+systemctl enable snapd.socket
+
 # Create a temporary user to build AUR packages
 useradd -m builder
 echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
