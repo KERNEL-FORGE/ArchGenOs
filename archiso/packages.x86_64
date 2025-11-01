@@ -37,8 +37,26 @@ ttf-liberation
 # Networking
 networkmanager
 
-# Utilities
+# Graphics Drivers
+nvidia-dkms
+vulkan-radeon
+vulkan-intel
+
+# Development and Productivity
+wine
+gcc
+nodejs
+sudo
 git
 vim
 htop
 fastfetch
+
+# Communication
+telegram-desktop
+discord
+
+# Third-party (Chaotic-AUR)
+snapd
+snap-store
+windscribe-cli

@@ -18,6 +18,13 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pacman -Syu --noconfirm
+          # Set up Chaotic-AUR
+          pacman-key --init
+          pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+          pacman-key --lsign-key 3056513887B78AEB
+          pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+          # Install build dependencies
           pacman -Syu --noconfirm archiso git grub syslinux
 
       - name: Build ISO
@@ -29,3 +36,23 @@ jobs:
         with:
           name: archgenos-iso
           path: out/*.iso
+
+  test-iso:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download ISO artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: archgenos-iso
+
+      - name: Install QEMU
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-x86
+
+      - name: Test ISO boot
+        run: |
+          qemu-system-x86_64 -m 2G -boot d -cdrom *.iso -display none -serial stdio -no-reboot &
+          sleep 60
+          kill $!
