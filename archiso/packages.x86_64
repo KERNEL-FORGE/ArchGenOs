@@ -9,6 +9,10 @@ grub
 efibootmgr
 syslinux
 
+# Chaotic-AUR support (installed from local repo)
+chaotic-keyring
+chaotic-mirrorlist
+
 # Hyprland and core components
 hyprland
 kitty
@@ -37,8 +41,27 @@ ttf-liberation
 # Networking
 networkmanager
 
-# Utilities
+# Graphics Drivers
+nvidia-dkms
+vulkan-radeon
+vulkan-intel
+
+# Development and Productivity
+wine
+gcc
+nodejs
+code
+sudo
 git
 vim
 htop
 fastfetch
+
+# Communication
+telegram-desktop
+discord
+
+# Third-party (Chaotic-AUR)
+snapd
+snap-store
+windscribe-cli

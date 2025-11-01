@@ -16,8 +16,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install dependencies
+      - name: Install dependencies and Create Local Repo
         run: |
+          pacman -Syu --noconfirm wget pacman-contrib
+          # Download chaotic keyring and mirrorlist to create a local repo
+          wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' -P /tmp
+          wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' -P /tmp
+          mkdir -p archiso/repo
+          mv /tmp/chaotic-*.pkg.tar.zst archiso/repo/
+          repo-add archiso/repo/chaotic.db.tar.gz archiso/repo/*.pkg.tar.zst
+          # Install build dependencies
           pacman -Syu --noconfirm archiso git grub syslinux
 
       - name: Build ISO
@@ -29,3 +37,23 @@ jobs:
         with:
           name: archgenos-iso
           path: out/*.iso
+
+  test-iso:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download ISO artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: archgenos-iso
+
+      - name: Install QEMU
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-x86
+
+      - name: Test ISO boot
+        run: |
+          qemu-system-x86_64 -m 2G -boot d -cdrom *.iso -display none -serial stdio -no-reboot &
+          sleep 60
+          kill $!
