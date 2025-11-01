@@ -1,0 +1,44 @@
+# Base packages
+base
+base-devel
+linux
+linux-firmware
+
+# Bootloader
+grub
+efibootmgr
+syslinux
+
+# Hyprland and core components
+hyprland
+kitty
+wofi
+waybar
+mako
+xdg-desktop-portal-hyprland
+polkit-kde-agent
+
+# File manager and web browser
+thunar
+firefox
+
+# Audio
+pipewire
+wireplumber
+pipewire-pulse
+
+# Fonts
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+ttf-dejavu
+ttf-liberation
+
+# Networking
+networkmanager
+
+# Utilities
+git
+vim
+htop
+fastfetch

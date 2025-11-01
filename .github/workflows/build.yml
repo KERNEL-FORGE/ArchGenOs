@@ -1,0 +1,31 @@
+name: Build ArchGenOS ISO
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+      options: --privileged
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm archiso git grub syslinux
+
+      - name: Build ISO
+        run: |
+          mkarchiso -v -w /tmp/archiso-work -o out/ ./archiso
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: archgenos-iso
+          path: out/*.iso
