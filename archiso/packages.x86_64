@@ -9,6 +9,10 @@ grub
 efibootmgr
 syslinux
 
+# Chaotic-AUR support (installed from local repo)
+chaotic-keyring
+chaotic-mirrorlist
+
 # Hyprland and core components
 hyprland
 kitty
@@ -46,6 +50,7 @@ vulkan-intel
 wine
 gcc
 nodejs
+code
 sudo
 git
 vim
