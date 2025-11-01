@@ -24,7 +24,7 @@ jobs:
           wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' -P /tmp
           mkdir -p archiso/airootfs/root/repo
           mv /tmp/chaotic-*.pkg.tar.zst archiso/airootfs/root/repo/
-          repo-add archiso/airootfs/root/repo/chaotic.db.tar.gz archiso/airootfs/root/repo/*.pkg.tar.zst
+          repo-add archiso/airootfs/root/repo/chaotic-local.db.tar.gz archiso/airootfs/root/repo/*.pkg.tar.zst
           # Install build dependencies
           pacman -Syu --noconfirm archiso git grub syslinux
 
