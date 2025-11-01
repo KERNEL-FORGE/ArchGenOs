@@ -16,15 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install dependencies and Create Local Repo
+      - name: Install dependencies and Prepare Local Packages
         run: |
-          pacman -Syu --noconfirm wget pacman-contrib
-          # Download chaotic keyring and mirrorlist to create a local repo
-          wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' -P /tmp
-          wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' -P /tmp
-          mkdir -p archiso/repo
-          mv /tmp/chaotic-*.pkg.tar.zst archiso/repo/
-          repo-add archiso/repo/chaotic-local.db.tar.gz archiso/repo/*.pkg.tar.zst
+          pacman -Syu --noconfirm wget
+          # Download chaotic keyring and mirrorlist to be installed as local packages
+          mkdir -p archiso/airootfs/root/packages
+          wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' -P archiso/airootfs/root/packages/
+          wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' -P archiso/airootfs/root/packages/
           # Install build dependencies
           pacman -Syu --noconfirm archiso git grub syslinux
 
