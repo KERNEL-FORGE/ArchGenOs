@@ -20,4 +20,3 @@ EOF
 # Clean up
 userdel -r builder
 sed -i '$ d' /etc/sudoers
-rm -rf /root/repo
