@@ -19,12 +19,12 @@ jobs:
       - name: Install dependencies and Create Local Repo
         run: |
           pacman -Syu --noconfirm wget pacman-contrib
-          # Download chaotic keyring and mirrorlist to create a local repo
+          # Download chaotic keyring and mirrorlist to create a local repo inside airootfs
           wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' -P /tmp
           wget 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' -P /tmp
-          mkdir -p archiso/repo
-          mv /tmp/chaotic-*.pkg.tar.zst archiso/repo/
-          repo-add archiso/repo/chaotic.db.tar.gz archiso/repo/*.pkg.tar.zst
+          mkdir -p archiso/airootfs/root/repo
+          mv /tmp/chaotic-*.pkg.tar.zst archiso/airootfs/root/repo/
+          repo-add archiso/airootfs/root/repo/chaotic.db.tar.gz archiso/airootfs/root/repo/*.pkg.tar.zst
           # Install build dependencies
           pacman -Syu --noconfirm archiso git grub syslinux
 
