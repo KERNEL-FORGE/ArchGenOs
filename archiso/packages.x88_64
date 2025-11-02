@@ -1,0 +1,67 @@
+# Base packages
+base
+base-devel
+linux
+linux-firmware
+
+# Bootloader
+grub
+efibootmgr
+syslinux
+
+# Chaotic-AUR support (installed from local repo)
+chaotic-keyring
+chaotic-mirrorlist
+
+# Hyprland and core components
+hyprland
+kitty
+wofi
+waybar
+mako
+xdg-desktop-portal-hyprland
+polkit-kde-agent
+
+# File manager and web browser
+thunar
+firefox
+
+# Audio
+pipewire
+wireplumber
+pipewire-pulse
+
+# Fonts
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+ttf-dejavu
+ttf-liberation
+
+# Networking
+networkmanager
+
+# Graphics Drivers
+nvidia-dkms
+vulkan-radeon
+vulkan-intel
+
+# Development and Productivity
+wine
+gcc
+nodejs
+code
+sudo
+git
+vim
+htop
+fastfetch
+
+# Communication
+telegram-desktop
+discord
+
+# Third-party (Chaotic-AUR)
+snapd
+snap-store
+windscribe-cli
