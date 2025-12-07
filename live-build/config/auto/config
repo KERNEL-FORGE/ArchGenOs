@@ -1,0 +1,18 @@
+LB_DISTRIBUTION="noble"
+LB_ARCHITECTURES="amd64"
+LB_DEBIAN_INSTALLER="false"
+LB_DEBIAN_INSTALLER_GUI="false"
+LB_COMPONENTS="main restricted universe multiverse"
+LB_PACKAGES="xubuntu-desktop live-boot live-config"
+
+# Configuration des miroirs pour Ubuntu Noble
+LB_BOOTSTRAP_FLAVOUR="ubuntu"
+LB_BOOTSTRAP="debootstrap"
+LB_BOOTSTRAP_OPTIONS="--arch amd64 --variant minbase"
+LB_MIRROR_BOOTSTRAP="http://archive.ubuntu.com/ubuntu/"
+LB_MIRROR_CHROOT="http://archive.ubuntu.com/ubuntu/"
+LB_MIRROR_BINARY="http://archive.ubuntu.com/ubuntu/"
+LB_MIRROR_CHROOT_SECURITY="http://security.ubuntu.com/ubuntu/"
+LB_MIRROR_BINARY_SECURITY="http://security.ubuntu.com/ubuntu/"
+LB_MIRROR_CHROOT_UPDATES="http://archive.ubuntu.com/ubuntu/"
+LB_MIRROR_BINARY_UPDATES="http://archive.ubuntu.com/ubuntu/"
