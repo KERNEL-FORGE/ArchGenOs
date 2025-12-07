@@ -1,0 +1,41 @@
+name: Build Minecraft Live ISO
+
+on:
+  push:
+    branches:
+      - feature/minecraft-distro
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install live-build dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y live-build debootstrap git wget curl
+
+    - name: Configure live-build
+      run: |
+        cd live-build
+        # Nettoyer les configurations précédentes
+        sudo lb clean --all
+        # Reconfigurer avec les options Ubuntu (les fichiers de config sont déjà dans le dépôt)
+        sudo lb config
+
+    - name: Build Live ISO
+      run: |
+        cd live-build
+        # La construction peut prendre beaucoup de temps et de ressources
+        sudo lb build
+
+    - name: Upload Live ISO Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: minecraft-live-iso
+        path: live-build/*.iso
+        if-no-files-found: error
